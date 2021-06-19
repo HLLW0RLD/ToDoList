@@ -2,13 +2,13 @@ package com.example.todo_list;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.todo_list.domain.ToDo;
-import com.example.todo_list.ui.ui.details.ToDoDetailsActivity;
 import com.example.todo_list.ui.ui.details.ToDoDetailsFragment;
 import com.example.todo_list.ui.ui.list.ToDoListFragment;
+
+import static com.example.todo_list.ui.ui.details.ToDoDetailsFragment.ARG_TODO;
 
 public class MainActivity extends AppCompatActivity implements ToDoListFragment.onToDoClicked  {
 
@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements ToDoListFragment.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ToDo toDo1 = getIntent().getParcelableExtra(ARG_TODO);
         ToDo toDo = getIntent().getParcelableExtra(ARG_TODO_LIST);
 
         if (savedInstanceState == null){
@@ -31,8 +32,9 @@ public class MainActivity extends AppCompatActivity implements ToDoListFragment.
 
     @Override
     public void onToDoClicked(ToDo toDo) {
-        Intent intent = new Intent(this, ToDoDetailsActivity.class);
-        intent.putExtra(ToDoDetailsActivity.ARG_TODO, toDo);
-        startActivity(intent);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.containerList, ToDoDetailsFragment.newInstance(toDo))
+                .commit();
     }
 }
