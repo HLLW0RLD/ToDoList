@@ -1,8 +1,11 @@
 package com.example.todo_list;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.example.todo_list.domain.ToDo;
 import com.example.todo_list.ui.ui.details.ToDoDetailsFragment;
@@ -36,5 +39,16 @@ public class MainActivity extends AppCompatActivity implements ToDoListFragment.
                 .beginTransaction()
                 .replace(R.id.containerList, ToDoDetailsFragment.newInstance(toDo))
                 .commit();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_add, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        return true;
     }
 }
