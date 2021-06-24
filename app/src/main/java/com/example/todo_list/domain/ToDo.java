@@ -12,13 +12,11 @@ public class ToDo implements Parcelable {
     public ToDo() {
         this.name = name;
         this.description = description;
-        this.date = date;
     }
 
     protected ToDo(Parcel in) {
         name = in.readString();
         description = in.readString();
-        date = in.readInt();
     }
 
     public static final Creator<ToDo> CREATOR = new Creator<ToDo>() {
@@ -41,20 +39,12 @@ public class ToDo implements Parcelable {
         return description;
     }
 
-    public int getDate() {
-        return date;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public void setDate(int date) {
-        this.date = date;
     }
 
     @Override

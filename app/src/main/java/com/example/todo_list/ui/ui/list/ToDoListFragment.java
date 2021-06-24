@@ -8,14 +8,11 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.todo_list.R;
 import com.example.todo_list.domain.ToDo;
-import com.example.todo_list.domain.ToDoRepository;
-import com.example.todo_list.ui.ui.details.ToDoDetailsFragment;
+import com.example.todo_list.domain.ToDoRepositoryImpl;
 
 import java.util.List;
 
@@ -31,7 +28,7 @@ public class ToDoListFragment extends Fragment {
     }
 
     private ToDo example;
-    private ToDoRepository toDoRepository;
+    private ToDoRepositoryImpl toDoRepository;
 
     public static ToDoListFragment newInstance(ToDo toDo){
         ToDoListFragment toDoListFragment = new ToDoListFragment();
@@ -45,7 +42,7 @@ public class ToDoListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ToDoRepository toDoRepository = new ToDoRepository();
+        ToDoRepositoryImpl toDoRepository = new ToDoRepositoryImpl();
     }
 
     @Override
