@@ -7,4 +7,11 @@
         android:id="@+id/menu_edit"
         android:title="@string/edit_todo"
         app:showAsAction="always"/>
+
+    <item
+        android:icon="@android:drawable/ic_menu_delete"
+        android:id="@+id/menu_delete"
+        android:title="@string/delete_todo"
+        app:showAsAction="always"/>
+
 </menu>

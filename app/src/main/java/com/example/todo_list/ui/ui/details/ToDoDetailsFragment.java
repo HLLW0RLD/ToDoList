@@ -17,6 +17,7 @@ import com.example.todo_list.domain.ToDo;
 public class ToDoDetailsFragment extends Fragment {
 
     public static final String ARG_TODO = "ARG_TODO";
+    public static final String TAG = "ToDoDetailsFragment";
 
     public static ToDoDetailsFragment newInstance(ToDo toDo){
         ToDoDetailsFragment toDoDetailsFragment = new ToDoDetailsFragment();

@@ -9,6 +9,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.todo_list.R;
 import com.example.todo_list.domain.ToDo;
@@ -20,15 +22,11 @@ import static com.example.todo_list.MainActivity.ARG_TODO_LIST;
 
 public class ToDoListFragment extends Fragment {
 
-    public static final String ARG_TODO = "ARG_TODO_LIST";
-    private onToDoClicked onToDoClicked;
+    public static final String ARG_TODO_LIST = "ARG_TODO_LIST";
+    public static final String TAG = "ToDoListFragment";
 
-    public interface onToDoClicked {
-        void onToDoClicked(ToDo toDo);
-    }
-
-    private ToDo example;
     private ToDoRepositoryImpl toDoRepository;
+    private MainRouter mRouter;
 
     public static ToDoListFragment newInstance(ToDo toDo){
         ToDoListFragment toDoListFragment = new ToDoListFragment();
@@ -46,20 +44,6 @@ public class ToDoListFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof onToDoClicked){
-            onToDoClicked = (onToDoClicked) context;
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        onToDoClicked = null;
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         return inflater.inflate(R.layout.fragment_todo_list, container, false);
@@ -69,26 +53,23 @@ public class ToDoListFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        LinearLayout todoList = view.findViewById(R.id.to_do_list_container);
+        RecyclerView recyclerView = view.findViewById(R.id.containerList);
+        recyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 2));
 
-        List<ToDo> toDos = toDoRepository.getToDo();
+        List<ToDo> todos = toDoRepository.getToDo();
 
-        for(ToDo todo: toDos){
+        ToDoAdapter toDoAdapter = new ToDoAdapter();
+        toDoAdapter.setData(todos);
 
-            View itemView = LayoutInflater.from(requireContext()).inflate(R.layout.todo_item, todoList, false);
+        recyclerView.setAdapter(toDoAdapter);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (onToDoClicked != null){
-                        onToDoClicked.onToDoClicked(todo);
-                    }
-                }
-            });
+        toDoAdapter.notifyDataSetChanged();
 
-            TextView todoName = view.findViewById(R.id.todo_name);
-            todoName.setText(example.getName());
-            todoList.addView(itemView);
-        }
+        toDoAdapter.setOnToDoClicked(new ToDoAdapter.onToDoClicked() {
+            @Override
+            public void onToDoClicked(ToDo toDo) {
+                mRouter.showToDoDetails(toDo);
+            }
+        });
     }
 }

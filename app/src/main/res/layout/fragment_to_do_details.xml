@@ -5,26 +5,30 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.ui.details.ToDoDetailsFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/black">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/details_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:menu="@menu/menu_edit" />
+        app:menu="@menu/menu_edit_and_delete"
+        android:background="#FFE500"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/todo_name"
         android:textSize="@dimen/name_size"
-        android:layout_margin="@dimen/normal_size"/>
+        android:layout_margin="@dimen/normal_size"
+        android:background="#8E8E8E"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/todo_description"
-        android:layout_margin="@dimen/normal_size"/>
+        android:layout_margin="@dimen/normal_size"
+        android:background="#8E8E8E"/>
 
 
 </LinearLayout>
