@@ -37,9 +37,13 @@ public class ToDoDetailsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         ToDo toDo = getArguments().getParcelable(ARG_TODO);
+
         TextView name = view.findViewById(R.id.todo_name);
+
         TextView description = view.findViewById(R.id.todo_description);
+
         name.setText(toDo.getName());
+
         description.setText(toDo.getDescription());
     }
 }

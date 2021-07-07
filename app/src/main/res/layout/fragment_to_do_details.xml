@@ -12,7 +12,7 @@
         android:id="@+id/details_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:menu="@menu/menu_edit_and_delete"
+        app:menu="@menu/menu_done_and_delete"
         android:background="#FFE500"/>
 
     <TextView

@@ -6,5 +6,7 @@ public interface ToDoRepository {
 
     List<ToDo> getToDo();
 
+    ToDo add(String name, String description);
 
+    void remove(ToDo toDo);
 }

@@ -14,10 +14,10 @@ public class MainRouter {
         this.fragmentManager = fragmentManager;
     }
 
-    public void showToDoList(ToDo toDo){
+    public void showToDoList(){
         fragmentManager
                 .beginTransaction()
-                .replace(R.id.containerList, ToDoListFragment.newInstance(toDo), ToDoListFragment.TAG)
+                .replace(R.id.containerList, ToDoListFragment.newInstance(), ToDoListFragment.TAG)
                 .commit();
     }
 
@@ -28,5 +28,4 @@ public class MainRouter {
                 .addToBackStack(ToDoDetailsFragment.TAG)
                 .commit();
     }
-
 }

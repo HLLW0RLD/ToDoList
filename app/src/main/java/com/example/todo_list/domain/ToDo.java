@@ -7,10 +7,25 @@ public class ToDo implements Parcelable {
 
     private String name;
     private String description;
-    private int date;
 
-    public ToDo() {
+    public ToDo(String name, String description) {
+        this.name = this.name;
+        this.description = this.description;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setName(String name) {
         this.name = name;
+    }
+
+    public void setDescription(String description) {
         this.description = description;
     }
 
@@ -31,22 +46,6 @@ public class ToDo implements Parcelable {
         }
     };
 
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -56,6 +55,5 @@ public class ToDo implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
         dest.writeString(description);
-        dest.writeInt(date);
     }
 }

@@ -6,19 +6,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import com.example.todo_list.domain.ToDo;
-import com.example.todo_list.ui.ui.details.ToDoDetailsFragment;
 import com.example.todo_list.ui.ui.list.MainRouter;
-import com.example.todo_list.ui.ui.list.ToDoAdapter;
-import com.example.todo_list.ui.ui.list.ToDoListFragment;
 
-import static com.example.todo_list.ui.ui.details.ToDoDetailsFragment.ARG_TODO;
-import static com.example.todo_list.ui.ui.list.ToDoListFragment.ARG_TODO_LIST;
-
-public class MainActivity extends AppCompatActivity implements ToDoAdapter.onToDoClicked  {
+public class MainActivity extends AppCompatActivity  {
 
     public static final String ARG_TODO_LIST = "ARG_TODO_LIST";
+
+    public MainRouter getMainRouter() {
+        return mainRouter;
+    }
+
     private MainRouter mainRouter;
 
     @Override
@@ -26,21 +24,10 @@ public class MainActivity extends AppCompatActivity implements ToDoAdapter.onToD
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ToDo toDo = getIntent().getParcelableExtra(ARG_TODO_LIST);
+        mainRouter = new MainRouter(getSupportFragmentManager());
 
         if (savedInstanceState == null){
-            mainRouter.showToDoList(toDo);
+            mainRouter.showToDoList();
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_add, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        return true;
     }
 }

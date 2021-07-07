@@ -17,9 +17,11 @@ import java.util.List;
 public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ToDoViewHolder> {
 
     private ArrayList<ToDo> todos = new ArrayList<>();
+    private onToDoClicked onToDoClicked;
 
     public interface onToDoClicked {
         void onToDoClicked(ToDo toDo);
+
     }
 
     public void setData(List<ToDo> toSet){
@@ -27,7 +29,10 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ToDoViewHolder
         todos.addAll(toSet);
     }
 
-    private onToDoClicked onToDoClicked;
+    public int add(ToDo addedToDo){
+        todos.add(addedToDo);
+        return 0;
+    }
 
     public ToDoAdapter.onToDoClicked getOnToDoClicked() {
         return onToDoClicked;
