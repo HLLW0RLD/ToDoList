@@ -7,10 +7,16 @@ public class ToDo implements Parcelable {
 
     private String name;
     private String description;
+    private  String id;
 
-    public ToDo(String name, String description) {
+    public ToDo(String id, String name, String description) {
         this.name = this.name;
         this.description = this.description;
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getName() {
@@ -29,15 +35,17 @@ public class ToDo implements Parcelable {
         this.description = description;
     }
 
-    protected ToDo(Parcel in) {
+    protected ToDo(Parcel in, String id) {
         name = in.readString();
         description = in.readString();
+        this.id = id;
     }
 
-    public static final Creator<ToDo> CREATOR = new Creator<ToDo>() {
+
+    public final Creator<ToDo> CREATOR = new Creator<ToDo>() {
         @Override
         public ToDo createFromParcel(Parcel in) {
-            return new ToDo(in);
+            return new ToDo(in, id);
         }
 
         @Override

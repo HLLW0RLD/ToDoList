@@ -3,6 +3,7 @@ package com.example.todo_list.domain;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 public class ToDoRepositoryImpl implements ToDoRepository {
 
@@ -11,7 +12,7 @@ public class ToDoRepositoryImpl implements ToDoRepository {
 
     public ToDoRepositoryImpl(){
 
-        todos.add(new ToDo("i am first note", "description test"));
+        todos.add(new ToDo("1","i am first note", "description test"));
 
     }
 
@@ -22,7 +23,7 @@ public class ToDoRepositoryImpl implements ToDoRepository {
 
     @Override
     public ToDo add(String name, String description) {
-        ToDo toDo = new ToDo(name, description);
+        ToDo toDo = new ToDo(UUID.randomUUID().toString(), name, description);
         todos.add(toDo);
         return toDo;
     }
@@ -32,5 +33,32 @@ public class ToDoRepositoryImpl implements ToDoRepository {
         todos.remove(toDo);
     }
 
+    @Override
+    public ToDo update(ToDo toDo, String name, String description) {
+
+        for (int i = 0; i < todos.size(); i++){
+
+            ToDo item = todos.get(i);
+
+            if (item.getId().equals(toDo.getId())){
+
+                String nameToSet = item.getName();
+                String descriptionToSet = item.getDescription();
+
+                if (name != null){
+                    nameToSet = name;
+                }
+                if (description != null){
+                    descriptionToSet = description;
+                }
+
+                ToDo newToDo = new ToDo(item.getId(), nameToSet, descriptionToSet);
+
+                todos.remove(i);
+                todos.add(i, newToDo);
+            }
+        }
+        return toDo;
+    }
 }
 

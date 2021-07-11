@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.todo_list.R;
@@ -32,6 +31,25 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ToDoViewHolder
     public int add(ToDo addedToDo){
         todos.add(addedToDo);
         return 0;
+    }
+
+    public void remove(ToDo removedToDo){
+        todos.remove(removedToDo);
+    }
+
+    public void update(ToDo toDo) {
+        for (int i = 0; i < todos.size(); i++) {
+
+            ToDo item = todos.get(i);
+
+            if (item.getId().equals(toDo.getId())) {
+
+                todos.remove(i);
+                todos.add(i, toDo);
+
+                return;
+            }
+        }
     }
 
     public ToDoAdapter.onToDoClicked getOnToDoClicked() {

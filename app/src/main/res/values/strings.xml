@@ -6,4 +6,5 @@
     <string name="edit_todo">Edit</string>
     <string name="delete_todo">delete</string>
     <string name="to_do">ToDo</string>
+    <string name="done">DONE</string>
 </resources>

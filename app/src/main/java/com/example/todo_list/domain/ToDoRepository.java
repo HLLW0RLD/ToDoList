@@ -9,4 +9,6 @@ public interface ToDoRepository {
     ToDo add(String name, String description);
 
     void remove(ToDo toDo);
+
+    ToDo update(ToDo toDo, String name, String description);
 }
