@@ -9,13 +9,13 @@
     android:background="@color/black">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/details_toolbar"
+        android:id="@+id/update_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:menu="@menu/menu_edit_and_delete"
+        app:menu="@menu/menu_done"
         android:background="#FFE500"/>
 
-    <TextView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/todo_name"
@@ -23,7 +23,7 @@
         android:layout_margin="@dimen/normal_size"
         android:background="#8E8E8E"/>
 
-    <TextView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/todo_description"

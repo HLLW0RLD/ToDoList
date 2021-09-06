@@ -1,15 +1,14 @@
 package com.example.todo_list.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ToDoRepository {
+public interface ToDoRepository {
 
-    public List<ToDo> getToDo(){
-        ArrayList<ToDo> todo = new ArrayList<>();
+    List<ToDo> getToDo();
 
-        return todo;
-    }
+    ToDo add(String name, String description);
 
+    void remove(ToDo toDo);
+
+    ToDo update(ToDo toDo, String name, String description);
 }
-

@@ -7,31 +7,17 @@ public class ToDo implements Parcelable {
 
     private String name;
     private String description;
-    private int date;
+    private  String id;
 
-    public ToDo() {
-        this.name = name;
-        this.description = description;
-        this.date = date;
+    public ToDo(String id, String name, String description) {
+        this.name = this.name;
+        this.description = this.description;
+        this.id = id;
     }
 
-    protected ToDo(Parcel in) {
-        name = in.readString();
-        description = in.readString();
-        date = in.readInt();
+    public String getId() {
+        return id;
     }
-
-    public static final Creator<ToDo> CREATOR = new Creator<ToDo>() {
-        @Override
-        public ToDo createFromParcel(Parcel in) {
-            return new ToDo(in);
-        }
-
-        @Override
-        public ToDo[] newArray(int size) {
-            return new ToDo[size];
-        }
-    };
 
     public String getName() {
         return name;
@@ -39,10 +25,6 @@ public class ToDo implements Parcelable {
 
     public String getDescription() {
         return description;
-    }
-
-    public int getDate() {
-        return date;
     }
 
     public void setName(String name) {
@@ -53,9 +35,24 @@ public class ToDo implements Parcelable {
         this.description = description;
     }
 
-    public void setDate(int date) {
-        this.date = date;
+    protected ToDo(Parcel in, String id) {
+        name = in.readString();
+        description = in.readString();
+        this.id = id;
     }
+
+
+    public final Creator<ToDo> CREATOR = new Creator<ToDo>() {
+        @Override
+        public ToDo createFromParcel(Parcel in) {
+            return new ToDo(in, id);
+        }
+
+        @Override
+        public ToDo[] newArray(int size) {
+            return new ToDo[size];
+        }
+    };
 
     @Override
     public int describeContents() {
@@ -66,6 +63,5 @@ public class ToDo implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
         dest.writeString(description);
-        dest.writeInt(date);
     }
 }
